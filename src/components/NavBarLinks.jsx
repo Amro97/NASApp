@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { BottomNavigation } from '@material-ui/core';
 
 function NavBarLinks() {
     return (

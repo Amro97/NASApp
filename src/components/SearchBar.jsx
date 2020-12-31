@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-import { useState, prevState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import React from 'react'
+import { useState } from 'react';
 import { Button, TextField } from '@material-ui/core'
-import MediaCard from './MediaCard'
 const axios = require('axios')
 
 function SearchBar(props) {
@@ -13,7 +11,6 @@ function SearchBar(props) {
         await data.forEach(d => {
             if (d.links && d.data) {
                 let temp = { href: d.links[0].href, title: d.data[0].title, description: d.data[0].description, media_type: d.data[0].media_type }
-                console.log(temp)
                 dataArr.push(temp)
             }
         })
@@ -21,7 +18,7 @@ function SearchBar(props) {
     }
 
     const handleClick = async () => {
-        const res = await axios.get(`https://images-api.nasa.gov/search?q=${value}`)
+        const res = await axios.get(`https://images-api.nasa.gov/search?q=${value}&media_type=image`)
         const results = await handleData(res.data.collection.items)
         props.setInfo(results)
     }

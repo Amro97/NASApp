@@ -1,7 +1,4 @@
-import React, { Component } from 'react'
-import { useState, prevState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { Button, TextField } from '@material-ui/core'
+import React, { useState } from 'react'
 import SearchBar from './SearchBar'
 import MediaCard from './MediaCard'
 const axios = require('axios')
@@ -9,10 +6,14 @@ const axios = require('axios')
 function Search() {
     const [info, setInfo] = useState(null);
 
+    async function handleClick(data) {
+        await axios.post("http://localhost:1301/image", data)
+    }
+
     return (
         <div className='search-results'>
-            <SearchBar setInfo={setInfo}/>
-            {info && info.map(i => <div className='disliked'><MediaCard info={i} /><i class="far fa-thumbs-up"></i></div>)}
+            <SearchBar setInfo={setInfo} />
+            {info && info.map(i => <div key={i.href} className='disliked'><MediaCard info={i} /><i className="far fa-thumbs-up" onClick={() => handleClick(i)}></i></div>)}
         </div>
     );
 }
