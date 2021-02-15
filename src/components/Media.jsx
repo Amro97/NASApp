@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup'
 function Media(props){
     const location = useLocation()
 
-    const checkLocation = () => location.pathname === '/' || location.pathname.length > 12
+    const checkLocation = () => location.pathname === '' || location.pathname.length > 12
 
     const info = props.info
 
